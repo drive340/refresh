@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please Wait</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #007bff;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .continue-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .continue-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">Please wait, you will be redirected in 5 seconds. If not, click the button to continue.</div>
+        <div class="spinner"></div>
+        <button class="continue-button" id="continueButton">Continue</button>
+    </div>
+    <script>
+        var redirectUrl = "action.html"; // Change this to your desired URL
+        var redirectTimeout = 3000; // 5 seconds
+        var continueButton = document.getElementById("continueButton");
+
+        function redirect() {
+            window.location.href = redirectUrl;
+        }
+
+        // Set timeout for automatic redirect
+        var timeoutId = setTimeout(redirect, redirectTimeout);
+
+        // Add click event listener to the continue button
+        continueButton.addEventListener("click", function() {
+            clearTimeout(timeoutId); // Cancel the automatic redirect
+            redirect(); // Perform the redirect immediately
+        });
+    </script>
+</body>
+</html>
